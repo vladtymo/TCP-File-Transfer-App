@@ -64,7 +64,7 @@ namespace Server
             }
 
             // зупиняємо роботу сервера
-            server.Stop();
+            server?.Stop();
         }
     }
 }
