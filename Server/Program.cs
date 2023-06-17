@@ -33,7 +33,7 @@ namespace Server
                 {
                     Console.WriteLine("\tWaiting for file...");
                     // отримуємо зв'язок з клієнтом
-                    TcpClient client = server.AcceptTcpClient(); // waiting...
+                    TcpClient client = server.AcceptTcpClient(); // waiting for the connection
 
                     // отримуємо дані від клієнта
                     // та десеріалізуємо об'єкт
@@ -46,10 +46,12 @@ namespace Server
                     Console.WriteLine("Saving...");
 
                     // зберігаємо отриманий файл на сервері
-                    using (FileStream fs = new FileStream($"Files/{info.Name}", FileMode.Create, FileAccess.Write))
-                    {
-                        fs.Write(info.Data, 0, info.Data.Length);
-                    }
+                    //using (FileStream fs = new FileStream($"Files/{info.Name}", FileMode.Create, FileAccess.Write))
+                    //{
+                    //    fs.Write(info.Data, 0, info.Data.Length);
+                    //}
+                    File.WriteAllBytes(info.Name, info.Data);
+
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Saved!");
                 }

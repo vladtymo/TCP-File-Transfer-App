@@ -58,19 +58,22 @@ namespace Client
                 //ns.Read();  // recieve data from remote end point
 
                 // створюємо клас, який містить інформацію про файл
-                FileTransferInfo info = new FileTransferInfo();
-                info.Name = Path.GetFileName(FilePath);
+                FileTransferInfo info = new FileTransferInfo
+                {
+                    Name = Path.GetFileName(FilePath),
+                    Data = File.ReadAllBytes(FilePath)
+                };
 
                 // створюємо потік файла
-                using (FileStream fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read))
-                {
-                    // зчитуємо файл в масив байтів
-                    byte[] fileData = new byte[fs.Length];
-                    fs.Read(fileData, 0, fileData.Length);
+                //using (FileStream fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read))
+                //{
+                //    // зчитуємо файл в масив байтів
+                //    byte[] fileData = new byte[fs.Length];
+                //    fs.Read(fileData, 0, fileData.Length);
 
-                    // встановлюємо вміст файла
-                    info.Data = fileData;
-                }
+                //    // встановлюємо вміст файла
+                //    info.Data = fileData;
+                //}
                 // на цьому етапі в нас є повністю сформований клас,
                 // який містить ім'я та вміст вибраного файла
 
