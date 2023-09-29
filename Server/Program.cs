@@ -12,7 +12,6 @@ using System.Xml.Serialization;
     
 namespace Server
 {
-    
     class Program
     {
         static IPAddress iPAddress = IPAddress.Parse("127.0.0.1");
@@ -45,6 +44,9 @@ namespace Server
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine("Saving...");
 
+                    if (!Directory.Exists("Files"))
+                        Directory.CreateDirectory("Files");
+
                     // зберігаємо отриманий файл на сервері
                     using (FileStream fs = new FileStream($"Files/{info.Name}", FileMode.Create, FileAccess.Write))
                     {
@@ -64,7 +66,7 @@ namespace Server
             }
 
             // зупиняємо роботу сервера
-            server.Stop();
+            server?.Stop();
         }
     }
 }
